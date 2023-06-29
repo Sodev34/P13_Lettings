@@ -30,41 +30,41 @@ jobs:
             python3 manage.py test
 
 
-#  containerize:
- #       docker:
-  #        - image: cimg/python:3.9
-   #     steps:
-    #        - checkout
-     #       - setup_remote_docker
-      #      - run:
-       #         name: "containerize"
-        #        command: |
-         #           echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_LOGIN --password-stdin
-          #          docker build -t final_image_oc_lettings_site .
-           #         docker tag final_image_oc_lettings_site $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
-            #        docker push $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
+  containerize:
+        docker:
+          - image: cimg/python:3.9
+        steps:
+            - checkout
+            - setup_remote_docker
+            - run:
+                name: "containerize"
+                command: |
+                    echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_LOGIN --password-stdin
+                    docker build -t final_image_oc_lettings_site .
+                    docker tag final_image_oc_lettings_site $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
+                    docker push $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
 
  
 
 workflows:
   main:
-  #  jobs:
-  #    - build_and_test
-  #    - containerize:
-  #        requires:
-  #          - build_and_test
-  #        filters:
-  #          branches:
-  #            only:
-  #              - main
     jobs:
       - build_and_test
-      - docker/publish:
-          extra_build_args: '--build-arg SECRET_KEY=$SECRET_KEY'
-          image: $DOCKER_LOGIN/$DOCKER_REPO
-          tag: $CIRCLE_SHA1
+      - containerize:
           requires:
             - build_and_test
           filters:
             branches:
-              only: circle
+              only:
+                - main
+      #jobs:
+     # - build_and_test
+      #- docker/publish:
+       #   extra_build_args: '--build-arg SECRET_KEY=$SECRET_KEY'
+        #  image: $DOCKER_LOGIN/$DOCKER_REPO
+         # tag: $CIRCLE_SHA1
+          #requires:
+           # - build_and_test
+          #filters:
+           # branches:
+            #  only: circle
