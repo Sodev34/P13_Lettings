@@ -16,8 +16,15 @@ jobs:
           name: Configure virtual environment
           command: |
             python3 -m venv env
+      - run:
+          name: upgrade pip
+          command: | 
             source env/bin/activate
             pip install --upgrade pip
+      - run:
+          name: install packages
+          command: |
+            source env/bin/activate
             pip install -r requirements.txt
       - run:
           name: Linting
@@ -67,4 +74,4 @@ workflows:
             - build_and_test
           filters:
             branches:
-              only: main
+              only: circle
