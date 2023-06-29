@@ -3,7 +3,7 @@ version: 2.1
 description: "Orange County Lettings"
 
 orbs: 
-  docker: circleci/docker@2.2.0
+  docker: circleci/docker@2.0.2
  # heroku: circleci/heroku@2.0.0
 
 jobs:
