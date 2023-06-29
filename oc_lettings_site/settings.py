@@ -1,6 +1,6 @@
-#from django.core.management.utils import get_random_secret_key
-
 import os
+
+#from django.core.management.utils import get_random_secret_key
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
