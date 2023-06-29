@@ -60,8 +60,8 @@ workflows:
     jobs:
       - build_and_test
       - docker/publish:
-          image: $DOCKER_LOGIN/final_image_oc_letting_site
-          tag: $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
+          image: $DOCKER_LOGIN/lettings
+          tag: $CIRCLE_SHA1
           requires:
             - build_and_test
           filters:
