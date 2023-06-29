@@ -3,7 +3,7 @@ version: 2.1
 description: "Orange County Lettings"
 
 orbs: 
-  docker: circleci/docker@2.0.2
+  docker: circleci/docker@2.2.0
  # heroku: circleci/heroku@2.0.0
 
 jobs:
@@ -29,18 +29,43 @@ jobs:
             source env/bin/activate
             python3 manage.py test
 
+
+  containerize:
+        docker:
+          - image: cimg/python:3.9
+        steps:
+            - checkout
+            - setup_remote_docker
+            - run:
+                name: "containerize"
+                command: |
+                    echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_LOGIN --password-stdin
+                    docker build -t final_image_oc_lettings_site .
+                    docker tag final_image_oc_lettings_site $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
+                    docker push $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
+
  
 
 workflows:
   main:
     jobs:
       - build_and_test
-      - docker/publish:
-          extra_build_args: '--build-arg SECRET_KEY=$SECRET_KEY'
-          image: $DOCKER_LOGIN/final_image_oc_letting_site
-          tag: '$CIRCLE_SHA1,latest'
+      - containerize:
           requires:
             - build_and_test
           filters:
             branches:
-              only: master
+              only:
+                - master
+ # main:
+  #  jobs:
+   #   - build_and_test
+    #  - docker/publish:
+     #     extra_build_args: '--build-arg SECRET_KEY=$SECRET_KEY'
+      #    image: $DOCKER_LOGIN/final_image_oc_letting_site
+       #   tag: '$CIRCLE_SHA1,latest'
+        #  requires:
+         #   - build_and_test
+          #filters:
+           # branches:
+            #  only: master
