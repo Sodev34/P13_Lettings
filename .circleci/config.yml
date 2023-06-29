@@ -16,14 +16,6 @@ jobs:
           name: Configure virtual environment
           command: |
             python3 -m venv env
-      - run:
-          name: upgrade pip
-          command: | 
-            source env/bin/activate
-            pip install --upgrade pip
-      - run:
-          name: install packages
-          command: |
             source env/bin/activate
             pip install -r requirements.txt
       - run:
@@ -68,7 +60,7 @@ workflows:
     jobs:
       - build_and_test
       - docker/publish:
-          image: $DOCKER_LOGIN/lettings
+          image: $DOCKER_LOGIN/$DOCKER_REPO
           tag: $CIRCLE_SHA1
           requires:
             - build_and_test
