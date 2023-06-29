@@ -56,7 +56,7 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - circle
       #jobs:
      # - build_and_test
       #- docker/publish:
