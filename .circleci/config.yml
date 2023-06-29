@@ -60,6 +60,7 @@ workflows:
     jobs:
       - build_and_test
       - docker/publish:
+          extra_build_args: '--build-arg SECRET_KEY=$SECRET_KEY
           image: $DOCKER_LOGIN/$DOCKER_REPO
           tag: $CIRCLE_SHA1
           requires:
