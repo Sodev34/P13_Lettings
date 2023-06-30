@@ -2,9 +2,6 @@
 version: 2.1
 description: "Orange County Lettings"
 
-orbs:
- # heroku: circleci/heroku@2.0.0
-
 jobs:
   build_and_test:
     docker:
@@ -43,6 +40,18 @@ jobs:
                     docker tag final_image_oc_lettings_site $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
                     docker push $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
 
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Deploy to Heroku
+          command: |
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            HEROKU_API_KEY=$HEROKU_TOKEN heroku container:login
+            HEROKU_API_KEY=$HEROKU_TOKEN heroku container:push -a app-oc-lettings web
+            HEROKU_API_KEY=$HEROKU_TOKEN heroku container:release -a app-oc-lettings web
+
  
 
 workflows:
@@ -52,6 +61,13 @@ workflows:
       - containerize:
           requires:
             - build_and_test
+          filters:
+            branches:
+              only:
+                - circle
+      - deploy:
+          requires:
+            - containerize
           filters:
             branches:
               only:
