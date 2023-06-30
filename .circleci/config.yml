@@ -51,7 +51,6 @@ jobs:
             HEROKU_API_KEY=$HEROKU_TOKEN heroku container:login
             HEROKU_API_KEY=$HEROKU_TOKEN heroku container:push -a app-oc-lettings web
             HEROKU_API_KEY=$HEROKU_TOKEN heroku container:release -a app-oc-lettings web
-
  
 
 workflows:
