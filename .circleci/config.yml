@@ -3,7 +3,7 @@ version: 2.1
 description: "Orange County Lettings"
 
 orbs: 
-  docker: circleci/docker@1.6.0
+  docker: circleci/docker@2.2.0
  # heroku: circleci/heroku@2.0.0
 
 jobs:
@@ -48,23 +48,23 @@ jobs:
 
 workflows:
   main:
-    jobs:
+  #  jobs:
+  #    - build_and_test
+  #    - containerize:
+  #        requires:
+  #          - build_and_test
+  #        filters:
+  #          branches:
+  #            only:
+  #              - circle
+      jobs:
       - build_and_test
-      - containerize:
+      - docker/publish:
+          extra_build_args: '--build-arg SECRET_KEY=$SECRET_KEY'
+          image: $DOCKER_LOGIN/$DOCKER_REPO
+          tag: '$CIRCLE_SHA1'
           requires:
             - build_and_test
           filters:
             branches:
-              only:
-                - circle
-      #jobs:
-     # - build_and_test
-      #- docker/publish:
-       #   extra_build_args: '--build-arg SECRET_KEY=$SECRET_KEY'
-        #  image: $DOCKER_LOGIN/$DOCKER_REPO
-         # tag: $CIRCLE_SHA1
-          #requires:
-           # - build_and_test
-          #filters:
-           # branches:
-            #  only: circle
+              only: circle
