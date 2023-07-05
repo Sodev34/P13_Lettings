@@ -2,10 +2,6 @@
 version: 2.1
 description: "Orange County Lettings"
 
-orbs: 
-  docker: circleci/docker@2.2.0
- # heroku: circleci/heroku@2.0.0
-
 jobs:
   build_and_test:
     docker:
@@ -17,7 +13,6 @@ jobs:
           command: |
             python3 -m venv env
             source env/bin/activate
-            pip install --upgrade pip
             pip install -r requirements.txt
       - run:
           name: Linting
@@ -45,26 +40,43 @@ jobs:
                     docker tag final_image_oc_lettings_site $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
                     docker push $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
 
+  deploy:
+    machine:
+      image: ubuntu-2204:2023.04.2
+    steps:
+      - checkout
+      - run:
+          name: Deploy to Heroku
+          command: |
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            HEROKU_API_KEY=$HEROKU_TOKEN heroku container:login
+            HEROKU_API_KEY=$HEROKU_TOKEN heroku container:push -a $HEROKU_APP_NAME web
+            HEROKU_API_KEY=$HEROKU_TOKEN heroku container:release -a $HEROKU_APP_NAME web
  
 
 workflows:
   main:
-  #  jobs:
-  #    - build_and_test
-  #    - containerize:
-  #        requires:
-  #          - build_and_test
-  #        filters:
-  #          branches:
-  #            only:
-  #              - main
     jobs:
       - build_and_test
-      - docker/publish:
-          image: $DOCKER_LOGIN/lettings
-          tag: $CIRCLE_SHA1
+      - containerize:
           requires:
             - build_and_test
           filters:
             branches:
-              only: main
+              only:
+                - main
+      - deploy:
+          requires:
+            - containerize
+          filters:
+            branches:
+              only:
+                - main
+
+#sudo curl https://cli-assets.heroku.com/install.sh | sh
+ #           HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
+  #          HEROKU_API_KEY=${HEROKU_TOKEN} heroku config:set SECRET_KEY=$SECRET_KEY -a $HEROKU_APP_NAME
+   #         HEROKU_API_KEY=${HEROKU_TOKEN} heroku config:set DEBUG=0 -a $HEROKU_APP_NAME
+    #        HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a $HEROKU_APP_NAME web
+     #       HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a $HEROKU_APP_NAME web
+      #      HEROKU_API_KEY=${HEROKU_TOKEN} heroku run python manage.py migrate -a $HEROKU_APP_NAME
