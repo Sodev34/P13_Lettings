@@ -64,14 +64,14 @@ workflows:
           filters:
             branches:
               only:
-                - circle
+                - main
       - deploy:
           requires:
             - containerize
           filters:
             branches:
               only:
-                - circle
+                - main
 
 #sudo curl https://cli-assets.heroku.com/install.sh | sh
  #           HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
