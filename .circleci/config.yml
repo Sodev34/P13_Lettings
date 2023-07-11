@@ -23,7 +23,7 @@ jobs:
           name: Run tests
           command: |
             source env/bin/activate
-            python3 manage.py test
+            pytest
 
 
   containerize:
