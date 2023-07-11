@@ -64,13 +64,13 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - circle
       - deploy:
           requires:
             - containerize
           filters:
             branches:
               only:
-                - main
+                - circle
 
 
