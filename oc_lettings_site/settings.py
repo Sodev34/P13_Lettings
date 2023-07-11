@@ -119,7 +119,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 sentry_sdk.init(
-    dsn="SENTRY_DSN",
+    dsn=os.environ.get("DSN_SENTRY"),
     integrations=[
         DjangoIntegration(),
     ],
