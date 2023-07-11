@@ -118,18 +118,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 sentry_sdk.init(
-    dsn="https://cb7e9d9a3fb34ceb8c9bee9f02317a25@o4505511383007232.ingest.sentry.io/4505511388512256",
+    dsn="SENTRY_DSN",
     integrations=[
         DjangoIntegration(),
     ],
-
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     # We recommend adjusting this value in production.
     traces_sample_rate=1.0,
-
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
+    send_default_pii=True,
 )
-
