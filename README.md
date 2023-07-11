@@ -21,11 +21,11 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 #### Cloner le repository
 
 - `cd /path/to/put/project/in`
-- `git clone https://github.com/Sodev34/P13_Lettings.git`
+- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
 
 #### Créer l'environnement virtuel
 
-- `cd /path/to/P13_Lettings`
+- `cd /path/to/Python-OC-Lettings-FR`
 - `python -m venv venv`
 - `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
 - Activer l'environnement `source venv/bin/activate`
@@ -37,7 +37,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 #### Exécuter le site
 
-- `cd /path/to/P13_Lettings`
+- `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
 - `pip install --requirement requirements.txt`
 - `python manage.py runserver`
@@ -46,29 +46,28 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 #### Linting
 
-- `cd /path/to/P13_Lettings`
+- `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
 - `flake8`
 
 #### Tests unitaires
 
-- `cd /path/to/P13_Lettings`
+- `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
 - `pytest`
 
 #### Base de données
 
-- `cd /path/to/P13_Lettings`
+- `cd /path/to/Python-OC-Lettings-FR`
 - Ouvrir une session shell `sqlite3`
 - Se connecter à la base de données `.open oc-lettings-site.sqlite3`
 - Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(P13_Lettings_profile);`
+- Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
 - Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  P13_Lettings_profile where favorite_city like 'B%';`
+  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
 - `.quit` pour quitter
 
 #### Panel d'administration
 
 - Aller sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
-
