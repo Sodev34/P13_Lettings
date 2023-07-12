@@ -23,7 +23,7 @@ jobs:
           name: Run tests
           command: |
             source env/bin/activate
-            python3 manage.py test
+            pytest
 
 
   containerize:
@@ -64,13 +64,13 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - circle
       - deploy:
           requires:
             - containerize
           filters:
             branches:
               only:
-                - main
+                - circle
 
 
