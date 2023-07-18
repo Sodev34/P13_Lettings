@@ -100,14 +100,7 @@ Déploiement automatique à l'aide du pipeline CircleCI à chaque push du projet
 6. Déploiement web sous Heroku
 7. Suivi des erreurs et des performances avec Sentry
 
-Remarques:
-- Les étapes 1 à 4 sont lancées par un push sur n'importe quelle branche
-- Un succès aux étapes 1 à 4 est nécessaire pour passer à l'étape 5
-- Un succès à l'étape 5 est nécessaire pour passer à l'étape 6
-- Les étapes 5 à 7 ne sont lancés qu'avec un push de la branche main
-
-
-### Configuration requise
+### Conditions préalables
 
 Les comptes suivants sont nécessaires:
 - GitHub
@@ -115,4 +108,33 @@ Les comptes suivants sont nécessaires:
 - DockerHub
 - Heroku
 - Sentry
+
+### Guide
+
+#### Étape 1: DockerHub
+
+- Se connecter à Docker
+- Créer un dépôt (Create Repository)
+- Renseigner le nom du dépôt: lettings
+
+
+#### Étape 2: Heroku
+
+- Se connecter à Heroku
+- Cliquer sur New\Create new app
+- Renseigner le nom de l'application: app-oc-lettings
+
+#### Étape3: Sentry
+
+- Se connecter à Sentry
+- Menu Projects\Create Project
+- Choisir la plateforme: django
+- Renseigner le nom du projet: oc-lettings
+
+#### Étape4: CircleCI
+
+- Se connecter à CircleCI avec son compte GitHub
+- Menu Projects: rechercher le projet P13_Lettings
+- Set Up Poject: choisir "if you already have.circleci/config.yml" et branche master
+- Project Settings\Environment Variables\Add Environment Variable
 
