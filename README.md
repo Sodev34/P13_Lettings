@@ -107,8 +107,7 @@ Les comptes suivants sont nécessaires:
 
 - Se connecter à Docker
 - Créer un dépôt (Create Repository)
-- Renseigner le nom du dépôt: lettings
-
+- Renseigner le nom du dépôt: oc_lettings_site
 
 #### Étape 2 : Heroku
 
@@ -126,7 +125,7 @@ Les comptes suivants sont nécessaires:
 #### Étape 4 : CircleCI
 
 - Se connecter à CircleCI avec son compte GitHub
-- Menu Projects: rechercher le projet P13_Lettings
+- Menu Projects: rechercher le projet
 - Set Up Poject: choisir "if you already have.circleci/config.yml" et branche master
 - Project Settings\Environment Variables\Add Environment Variable
 
@@ -140,4 +139,17 @@ Les comptes suivants sont nécessaires:
   | SECRET_KEY          | La clé secrète Django               |
   | DEBUG_VALUE         | Debug mode de Django                |
   | DOCKER_REPO         | Le nom du dépôt dans DockerHub      |
+
+
+#### Étape 5 : Récupérer l'image sur DockerHub et lancer le site en local
+
+- Ouvrir Docker Desktop
+- Récupérer l'image en local: `docker pull docker_login/oc_lettings_site:tag`
+- Tag se trouve dans DockerHub
+- Lister les images: `docker images`
+- Lancer le container Docker avec le fichier des variables d'environnement locales: `docker run -d -p 8000:8000 your_docker_login/oc_lettings_site:tag`
+- Tester le site dans votre navigateur: `http://127.0.0.1:8000/`
+- Lister les container Docker lancés: `docker container ps`
+- Arrêter le container: `docker stop CONTAINER ID`
+- Nettoyer: `docker system prune`
 
