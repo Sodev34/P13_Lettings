@@ -71,3 +71,73 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 - Aller sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
+
+#### Windows
+
+Utilisation de PowerShell, comme ci-dessus sauf :
+
+- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
+- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+## Déploiement :
+
+### Workflow CircleCI :
+
+Déploiement automatique à l'aide du pipeline CircleCI à chaque push du projet dans GitHub en suivant le wokflow suivant:
+1. Récupération du code (checkout)
+2. Installation des packages listés dans requirements.txt avec pip
+3. Vérification du linting avec flake8
+4. Lancement des tests avec pytest
+5. Création du container avec l'image du projet dans le dépôt DockerHub
+6. Déploiement web sous Heroku
+7. Suivi des erreurs et des performances avec Sentry
+
+### Conditions préalables :
+
+Les comptes suivants sont nécessaires:
+- GitHub
+- CircleCI
+- DockerHub
+- Heroku
+- Sentry
+
+### Guide :
+
+#### Étape 1 : DockerHub
+
+- Se connecter à Docker
+- Créer un dépôt (Create Repository)
+- Renseigner le nom du dépôt: lettings
+
+
+#### Étape 2 : Heroku
+
+- Se connecter à Heroku
+- Cliquer sur New\Create new app
+- Renseigner le nom de l'application: app-oc-lettings
+
+#### Étape 3 : Sentry
+
+- Se connecter à Sentry
+- Menu Projects\Create Project
+- Choisir la plateforme: django
+- Renseigner le nom du projet: oc-lettings
+
+#### Étape 4 : CircleCI
+
+- Se connecter à CircleCI avec son compte GitHub
+- Menu Projects: rechercher le projet P13_Lettings
+- Set Up Poject: choisir "if you already have.circleci/config.yml" et branche master
+- Project Settings\Environment Variables\Add Environment Variable
+
+
+  | Name                | Valeur                              |
+  |---------------------|-------------------------------------|
+  | DOCKER_LOGIN        | Votre identifiant DockerHub         |
+  | DOCKER_PASSWORD     | Votre mot de passe DockerHub        |
+  | HEROKU_TOKEN        | Le token Heroku                     |
+  | HEROKU_APP_NAME     | Le nom de l'application sous Heroku |
+  | SECRET_KEY          | La clé secrète Django               |
+  | DEBUG_VALUE         | Debug mode de Django                |
+  | DOCKER_REPO         | Le nom du dépôt dans DockerHub      |
+
