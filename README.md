@@ -72,14 +72,14 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - Aller sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
 
-### Windows
+#### Windows
 
 Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
-### Variables d'environnement en local
+#### Variables d'environnement en local
 - Pour tester le site refactorisé en local, il est conseillé d'ajouter à la racine du projet le fichier .env
 - .env contient les variables:
 	- DJANGO_SECRET_KEY
