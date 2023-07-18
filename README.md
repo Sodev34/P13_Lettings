@@ -131,12 +131,11 @@ Les comptes suivants sont nécessaires:
 - Project Settings\Environment Variables\Add Environment Variable
 
   |Name|Description|</br>
-  |:---- |:-------|:-----:|</br>
-  |SECRET_KEY|Clé secrête Django|
-  |DOCKER_LOGIN|Votre identifiant DockerHub| 
-  |DOCKER_PASSWORD|Votre mot de passe DockerHub |
-  |HEROKU_TOKEN|Le token Heroku|
-  |HEROKU_APP_NAME|Le nom de votre appli sous Heroku|
-  |DOCKER_REPO|Le nom du dépôt dans DockerHub|
-  |DEBUG_VALUE|Debug mode de Django|
+  |SECRET_KEY|Clé secrête Django|</br>
+  |DOCKER_LOGIN|Votre identifiant DockerHub|</br>
+  |DOCKER_PASSWORD|Votre mot de passe DockerHub |</br>
+  |HEROKU_TOKEN|Le token Heroku|</br>
+  |HEROKU_APP_NAME|Le nom de votre appli sous Heroku|</br>
+  |DOCKER_REPO|Le nom du dépôt dans DockerHub|</br>
+  |DEBUG_VALUE|Debug mode de Django|</br>
 
