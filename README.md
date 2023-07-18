@@ -130,12 +130,14 @@ Les comptes suivants sont nécessaires:
 - Set Up Poject: choisir "if you already have.circleci/config.yml" et branche master
 - Project Settings\Environment Variables\Add Environment Variable
 
-  |Name|Description|</br>
-  |SECRET_KEY|Clé secrête Django|</br>
-  |DOCKER_LOGIN|Votre identifiant DockerHub|</br>
-  |DOCKER_PASSWORD|Votre mot de passe DockerHub |</br>
-  |HEROKU_TOKEN|Le token Heroku|</br>
-  |HEROKU_APP_NAME|Le nom de votre appli sous Heroku|</br>
-  |DOCKER_REPO|Le nom du dépôt dans DockerHub|</br>
-  |DEBUG_VALUE|Debug mode de Django|</br>
+
+  | Name                | Valeur                              |
+  |---------------------|-------------------------------------|
+  | DOCKER_LOGIN        | Votre identifiant DockerHub         |
+  | DOCKER_PASSWORD     | Votre mot de passe DockerHub        |
+  | HEROKU_TOKEN        | Le token Heroku                     |
+  | HEROKU_APP_NAME     | Le nom de l'application sous Heroku |
+  | SECRET_KEY          | La clé secrète Django               |
+  | DEBUG_VALUE         | Debug mode de Django                |
+  | DOCKER_REPO         | Le nom du dépôt dans DockerHub      |
 
