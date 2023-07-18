@@ -79,14 +79,6 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
-#### Variables d'environnement en local
-- Pour tester le site refactorisé en local, il est conseillé d'ajouter à la racine du projet le fichier .env
-- .env contient les variables:
-	- DJANGO_SECRET_KEY
-	- DSN_SENTRY
-	- DEBUG_VALUE
-
-
 ## Déploiement
 
 ### Workflow CircleCI
@@ -137,4 +129,14 @@ Les comptes suivants sont nécessaires:
 - Menu Projects: rechercher le projet P13_Lettings
 - Set Up Poject: choisir "if you already have.circleci/config.yml" et branche master
 - Project Settings\Environment Variables\Add Environment Variable
+
+|Name|Description|
+|:---- |:-------|:-----:|
+|SECRET_KEY|Clé secrête Django|
+|DOCKER_LOGIN|Votre identifiant DockerHub| 
+|DOCKER_PASSWORD|Votre mot de passe DockerHub |
+|HEROKU_TOKEN|Le token Heroku|
+|HEROKU_APP_NAME|Le nom de votre appli sous Heroku|
+|DOCKER_REPO|Le nom du dépôt dans DockerHub|
+|DEBUG_VALUE|Debug mode de Django|
 
