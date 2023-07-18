@@ -71,3 +71,48 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 - Aller sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
+
+### Windows
+
+Utilisation de PowerShell, comme ci-dessus sauf :
+
+- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
+- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+### Variables d'environnement en local
+- Pour tester le site refactorisé en local, il est conseillé d'ajouter à la racine du projet le fichier .env
+- .env contient les variables:
+	- DJANGO_SECRET_KEY
+	- DSN_SENTRY
+	- DEBUG_VALUE
+
+
+## Déploiement
+
+### Workflow CircleCI
+
+Déploiement automatique à l'aide du pipeline CircleCI à chaque push du projet dans GitHub en suivant le wokflow suivant:
+1. Récupération du code (checkout)
+2. Installation des packages listés dans requirements.txt avec pip
+3. Vérification du linting avec flake8
+4. Lancement des tests avec pytest
+5. Création du container avec l'image du projet dans le dépôt DockerHub
+6. Déploiement web sous Heroku
+7. Suivi des erreurs et des performances avec Sentry
+
+Remarques:
+- Les étapes 1 à 4 sont lancées par un push sur n'importe quelle branche
+- Un succès aux étapes 1 à 4 est nécessaire pour passer à l'étape 5
+- Un succès à l'étape 5 est nécessaire pour passer à l'étape 6
+- Les étapes 5 à 7 ne sont lancés qu'avec un push de la branche main
+
+
+### Configuration requise
+
+Les comptes suivants sont nécessaires:
+- GitHub
+- CircleCI
+- DockerHub
+- Heroku
+- Sentry
+
