@@ -125,7 +125,7 @@ Les comptes suivants sont nécessaires:
 #### Étape 4 : CircleCI
 
 - Se connecter à CircleCI avec son compte GitHub
-- Menu Projects: rechercher le projet
+- Menu Projects: rechercher le projet Python-OC-Lettings-FR
 - Set Up Poject: choisir "if you already have.circleci/config.yml" et branche master
 - Project Settings\Environment Variables\Add Environment Variable
 
