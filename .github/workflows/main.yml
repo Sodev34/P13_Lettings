@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  DOCKER_REPO: your_docker_repo
-  HEROKU_APP_NAME: your_heroku_app_name
+  DOCKER_REPO: ${{ env.DOCKER_REPO }}
+  HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
 
 jobs:
   build_and_test:
