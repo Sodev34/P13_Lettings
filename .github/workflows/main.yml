@@ -46,7 +46,7 @@ jobs:
       image: cimg/python:3.9
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.5.2  # Utilisez une version plus récente qui prend en charge Node.js 16
+        uses: actions/checkout@v2.4.0  # Utilisez une version plus récente qui prend en charge Node.js 16
 
       - name: Utiliser Node.js version 16
         uses: actions/setup-node@v2.4.0  # Utilisez une version plus récente qui prend en charge Node.js 16
@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.5.2  # Utilisez une version plus récente qui prend en charge Node.js 16
+        uses: actions/checkout@v2.4.0  # Utilisez une version plus récente qui prend en charge Node.js 16
 
       - name: Utiliser Node.js version 16
         uses: actions/setup-node@v2.4.0  # Utilisez une version plus récente qui prend en charge Node.js 16
