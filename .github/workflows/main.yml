@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - Sodev34-patch-1
 
 env:
   DOCKER_REPO: lettings
@@ -48,10 +48,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3 # Utilisez une version plus récente qui prend en charge Node.js 16
 
-      - name: Utiliser Node.js version 16
-        uses: actions/setup-node@v3  # Utilisez une version plus récente qui prend en charge Node.js 16
-        with:
-          node-version: '16.x'
+   #   - name: Utiliser Node.js version 16
+    #    uses: actions/setup-node@v3  # Utilisez une version plus récente qui prend en charge Node.js 16
+     #   with:
+      #    node-version: '16.x'
 
       - name: Setup Docker
         uses: docker/setup-buildx-action@v1
@@ -74,10 +74,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3  # Utilisez une version plus récente qui prend en charge Node.js 16
 
-      - name: Utiliser Node.js version 16
-        uses: actions/setup-node@v3  # Utilisez une version plus récente qui prend en charge Node.js 16
-        with:
-          node-version: '16.x'
+   #   - name: Utiliser Node.js version 16
+    #    uses: actions/setup-node@v3  # Utilisez une version plus récente qui prend en charge Node.js 16
+     #   with:
+      #    node-version: '16.x'
 
       - name: Install Heroku CLI
         run: |
