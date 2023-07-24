@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  DOCKER_REPO: ${{ env.DOCKER_REPO }}
-  HEROKU_APP_NAME: ${{ env.HEROKU_APP_NAME }}
+  DOCKER_REPO: lettings
+  HEROKU_APP_NAME: app-oc-lettings
 
 jobs:
   build_and_test:
