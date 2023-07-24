@@ -75,7 +75,7 @@ jobs:
         uses: actions/checkout@v3  # Utilisez une version plus récente qui prend en charge Node.js 16
 
       - name: Utiliser Node.js version 16
-        uses: actions/setup-node@v2.4.0  # Utilisez une version plus récente qui prend en charge Node.js 16
+        uses: actions/setup-node@v3  # Utilisez une version plus récente qui prend en charge Node.js 16
         with:
           node-version: '16.x'
 
