@@ -18,6 +18,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Utiliser Node.js version 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
       - name: Configure virtual environment
         run: |
           python3 -m venv env
@@ -43,6 +48,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Utiliser Node.js version 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
       - name: Setup Docker
         uses: docker/setup-buildx-action@v1
 
@@ -64,6 +74,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Utiliser Node.js version 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
       - name: Install Heroku CLI
         run: |
           sudo curl https://cli-assets.heroku.com/install.sh | sh
@@ -76,4 +91,3 @@ jobs:
         run: |
           HEROKU_API_KEY=${{ secrets.HEROKU_TOKEN }} heroku container:push -a ${{ env.HEROKU_APP_NAME }} web
           HEROKU_API_KEY=${{ secrets.HEROKU_TOKEN }} heroku container:release -a ${{ env.HEROKU_APP_NAME }} web
-
