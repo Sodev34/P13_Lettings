@@ -139,7 +139,7 @@ Les comptes suivants sont nécessaires:
   | SECRET_KEY          | La clé secrète Django               |
   | DEBUG_VALUE         | Debug mode de Django                |
   | DOCKER_REPO         | Le nom du dépôt dans DockerHub      |
-  | DSN_SENTRY          | Clé client Sentry                   |
+  | DSN_SENTRY          | Votre Clé client Sentry             |
 
 
 #### Étape 5 : Récupérer l'image sur DockerHub et lancer le site en local
