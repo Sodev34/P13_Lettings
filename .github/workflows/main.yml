@@ -26,17 +26,17 @@ jobs:
       - name: Configure virtual environment
         run: |
           python3 -m venv env
-          source env/bin/activate
+          . env/bin/activate
           pip install -r requirements.txt
 
       - name: Linting
         run: |
-          source env/bin/activate
+          . env/bin/activate
           flake8
 
       - name: Run tests
         run: |
-          source env/bin/activate
+          . env/bin/activate
           pytest
 
   containerize:
