@@ -6,7 +6,7 @@ on:
       - Sodev34-patch-1
 
 env:
-  DOCKER_REPO: lettings
+  DOCKER_REPO: sodev34/lettings
   HEROKU_APP_NAME: app-oc-lettings
 
 jobs:
