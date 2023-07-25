@@ -55,6 +55,17 @@ jobs:
 
       - name: Setup Docker
         uses: docker/setup-buildx-action@v1
+        with:
+          driver: docker-container
+          buildkitd-flags: --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+          install: false
+          use: true
+          run: |
+            sudo chmod 666 /var/run/docker.sock  # Accordez les autorisations en lecture/écriture au socket Docker
+            sudo chown $USER /var/run/docker.sock  # Changez le propriétaire du socket Docker pour l'utilisateur en cours
+         # group: |
+          #  sudo groupadd docker  # Ajoutez le groupe "docker" s'il n'existe pas déjà
+           # sudo usermod -aG docker $USER  # Ajoutez l'utilisateur en cours au groupe "docker" pour qu'il ait les autorisations requises
 
       - name: Login to DockerHub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username ${{ secrets.DOCKER_LOGIN }} --password-stdin
